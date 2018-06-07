@@ -1,11 +1,12 @@
 <template>
-  <div class="posts">
+  <div class="post">
     <h1>{{ msg }}</h1>
     <ul>
-      <li v-for="post in posts">
+      <li>
         {{ post.title }}
+      </li>
+      <li>
         {{ post.body }}
-        <br/>
       </li>
     </ul>
   </div>
@@ -18,15 +19,16 @@ export default {
   name: 'posts',
   data () {
     return {
-      msg: 'Index Page of my app',
-      posts: []
+      msg: 'Blog posts',
+      post: '',
+      errors: []
     }
   },
 
   created () {
-    axios.get(`http://localhost:3000/v1/posts/`)
+    axios.get(`http://localhost:3000/v1/posts/` + this.$route.params.id)
       .then(response => {
-        this.posts = response.data
+        this.post = response.data
       })
       .catch(e => {
         this.errors.push(e)
@@ -40,14 +42,14 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
-ul {
+/* ul {
   list-style-type: none;
   padding: 0;
 }
 li {
   display: inline-block;
   margin: 0 10px;
-}
+} */
 a {
   color: #42b983;
 }

@@ -3,9 +3,11 @@
     <h1>Write your own blog</h1>
     {{ errors.length > 0 ? errors : 'Your post was create' }}
     <form class="new_post_form" v-on:submit="postPost()">
-      <input v-model="title" placeholder="отредактируй меня">
-      <input v-model="body" placeholder="отредактируй меня">
-      <button type="submit" name="button">postPost</button>
+      <div class="col-sm-12">
+        <input v-model="title" placeholder="title of your post" class="form-control form-control-lg"><br>
+        <textarea v-model="body" placeholder="body of your post" class="form-control form-control-lg"></textarea><br>
+        <button type="submit" name="button" class="btn btn-primary">postPost</button>
+      </div>
     </form>
     <!-- <button v-on:click="postPost()">postPost</button> -->
   </div>
@@ -42,18 +44,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/* h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-} */
+  textarea{
+    height: 338px;
+  }
 </style>

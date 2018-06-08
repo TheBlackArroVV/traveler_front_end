@@ -29,11 +29,11 @@ export default {
         title: this.title,
         body: this.body
       })
-        .then(function (response) {
+        .then(response => {
           console.log(response.status)
         })
-        .catch(function (error) {
-          this.errors.push(error)
+        .catch(e => {
+          this.errors.push(e)
         })
     }
   }

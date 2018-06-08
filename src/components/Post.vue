@@ -8,6 +8,7 @@
       <li>
         {{ post.body }}
       </li>
+      <a href="/#/posts" @click="deletePost()">Delete this post</a>
     </ul>
   </div>
 </template>
@@ -33,6 +34,19 @@ export default {
       .catch(e => {
         this.errors.push(e)
       })
+  },
+
+  methods: {
+    deletePost () {
+      axios.delete(`http://localhost:3000/v1/posts/` + this.$route.params.id)
+        .then(response => {
+          console.lg(response)
+          console.log(`http://localhost:3000/v1/posts/` + this.$route.params.id)
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
+    }
   }
 }
 </script>

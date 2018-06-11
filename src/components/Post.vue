@@ -8,7 +8,10 @@
       <li>
         {{ post.body }}
       </li>
+      <a :href="'/#/posts/' + post.id + '/edit'">Edit this Post</a><br>
       <a href="/#/posts" @click="deletePost()">Delete this post</a>
+      <router-view></router-view>
+      <!-- <router-link @click.native="deletePost()" :to="{ name: 'Posts' }">Delete this post</router-link> -->
     </ul>
   </div>
 </template>
@@ -17,7 +20,7 @@
 import axios from 'axios'
 
 export default {
-  name: 'posts',
+  name: 'post',
   data () {
     return {
       msg: 'Blog posts',
@@ -40,7 +43,7 @@ export default {
     deletePost () {
       axios.delete(`http://localhost:3000/v1/posts/` + this.$route.params.id)
         .then(response => {
-          console.lg(response)
+          console.log(response)
           console.log(`http://localhost:3000/v1/posts/` + this.$route.params.id)
         })
         .catch(e => {

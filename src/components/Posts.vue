@@ -5,7 +5,7 @@
       <div class="row col-sm-12">
         <li v-for="post in posts" :key = "post.id" class="list-group-item col-sm-4">
           <div>
-            {{ post.title }}
+            <a :href="'/#/posts/' + post.id">{{ post.title }}</a><br>
             {{ post.body }}
           </div>
         </li>
@@ -45,14 +45,7 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
-/* ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-} */
+
 a {
   color: #42b983;
 }

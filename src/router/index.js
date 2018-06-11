@@ -4,6 +4,7 @@ import Index from '@/components/Index'
 import Posts from '@/components/Posts'
 import Post from '@/components/Post'
 import NewPost from '@/components/NewPost'
+import EditPost from '@/components/EditPost'
 
 Vue.use(Router)
 
@@ -27,7 +28,14 @@ export default new Router({
     {
       path: '/posts/:id',
       name: 'Post',
-      component: Post
+      component: Post,
+      children: [
+        {
+          path: 'edit',
+          name: 'EditPost',
+          component: EditPost
+        }
+      ]
     }
   ]
 })

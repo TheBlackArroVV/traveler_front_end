@@ -6,7 +6,7 @@
       <div class="col-sm-12">
         <input v-model="title" placeholder="title of your post" class="form-control form-control-lg"><br>
         <textarea v-model="body" placeholder="body of your post" class="form-control form-control-lg"></textarea><br>
-        <button type="submit" name="button" class="btn btn-primary">postPost</button>
+        <button type="submit" name="button" class="btn btn-primary">Register</button>
       </div>
     </form>
     <!-- <button v-on:click="postPost()">postPost</button> -->

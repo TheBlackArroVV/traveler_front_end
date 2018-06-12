@@ -27,6 +27,7 @@ export default {
   },
   methods: {
     updatePost () {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
       axios.patch(`http://localhost:3000/v1/posts/` + this.$route.params.id, {
         title: this.title,
         body: this.body

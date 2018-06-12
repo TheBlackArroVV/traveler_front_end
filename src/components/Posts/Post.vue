@@ -41,6 +41,7 @@ export default {
 
   methods: {
     deletePost () {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
       axios.delete(`http://localhost:3000/v1/posts/` + this.$route.params.id)
         .then(response => {
           console.log(response)

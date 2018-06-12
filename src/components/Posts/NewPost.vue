@@ -27,6 +27,7 @@ export default {
   },
   methods: {
     postPost () {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
       axios.post(`http://localhost:3000/v1/posts/`, {
         title: this.title,
         body: this.body

@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     login () {
-      axios.post(`http://localhost:3000/v1/user_token`, {
+      axios.post(`http://localhost:3000/api/v1/user_token`, {
         auth: {
           email: this.email,
           password: this.password

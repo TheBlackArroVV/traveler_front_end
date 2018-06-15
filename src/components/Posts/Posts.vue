@@ -29,7 +29,7 @@ export default {
   },
 
   created () {
-    axios.get(`http://localhost:3000/v1/posts/`)
+    axios.get(`http://localhost:3000/api/v1/posts/`)
       .then(response => {
         this.posts = response.data
       })

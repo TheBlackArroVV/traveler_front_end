@@ -11,6 +11,9 @@ export default {
     return {
       msg: 'Hello, this my first vue porject'
     }
+  },
+  created () {
+    console.log(this.$session.get('jwt'))
   }
 }
 </script>

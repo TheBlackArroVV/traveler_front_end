@@ -33,7 +33,7 @@ export default {
         body: this.body
       })
         .then(response => {
-          console.log(response.status)
+          location.href = '/#/posts'
         })
         .catch(e => {
           this.errors.push(e)

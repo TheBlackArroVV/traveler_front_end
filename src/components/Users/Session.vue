@@ -9,6 +9,11 @@
         <button type="submit" name="button" class="btn btn-primary">Log In</button>
       </div>
     </form>
+
+    <div class="google oauth">
+      <button type="button" name="button" @click="googleOauth()">Google</button>
+      <a href="http://localhost:3000/api/v1/users/auth/google_oauth2">Google</a>
+    </div>
   </div>
 </template>
 
@@ -38,7 +43,14 @@ export default {
           location.href = '/'
         })
         .catch(e => {
+          console.log(e.response)
           this.errors.push(e.response.data)
+        })
+    },
+    googleOauth () {
+      axios.get(`http://localhost:3000/api/v1/users/auth/google_oauth2`)
+        .then(response => {
+          console.log(response)
         })
     }
   }

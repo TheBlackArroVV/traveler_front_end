@@ -41,6 +41,7 @@ export default {
         .then(response => {
           this.registred = true
           this.erros = []
+          location.href = '/'
         })
         .catch(e => {
           this.errors.push(e.response.data)

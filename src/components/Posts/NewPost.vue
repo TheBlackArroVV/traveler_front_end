@@ -9,7 +9,6 @@
         <button type="submit" name="button" class="btn btn-primary">Register</button>
       </div>
     </form>
-    <!-- <button v-on:click="postPost()">postPost</button> -->
   </div>
 </template>
 

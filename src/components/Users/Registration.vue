@@ -11,6 +11,9 @@
         <button type="submit" name="button" class="btn btn-primary">Register</button>
       </div>
     </form>
+    <!-- <button @click="loginOauth('facebook')">Login</button>
+    <button @click="registerOauth('facebook')">Register</button> -->
+    <button @click="authenticate('facebook')">auth Facebook</button>
   </div>
 </template>
 
@@ -47,7 +50,23 @@ export default {
           this.errors.push(e.response.data)
           this.registred = false
         })
+    },
+    authenticate: function (provider) {
+      this.$auth.authenticate(provider).then(function () {
+        // Execute application logic after successful social authentication
+      })
     }
+    // loginOauth: function (provider) {
+    //   this.$auth.login(provider).then(function () {
+    //     // Execute application logic after successful login
+    //   })
+    // },
+    //
+    // registerOauth: function (provider) {
+    //   this.$auth.register(provider).then(function () {
+    //     // Execute application logic after successful registration
+    //   })
+    // }
   }
 }
 </script>

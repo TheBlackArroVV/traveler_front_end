@@ -30,6 +30,7 @@ export default {
   },
 
   created () {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
     axios.get(`http://localhost:3000/api/v1/posts/` + this.$route.params.id)
       .then(response => {
         this.post = response.data

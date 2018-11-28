@@ -2,18 +2,13 @@
   <div class="session">
     <h1>{{ msg }}</h1>
     <h3>{{ errors.length > 0 ? errors : '' }}</h3>
-    <form class="new_user_form" v-on:submit="login()">
+    <form class="new_user_form" v-on:submit.prevent="login()">
       <div class="col-sm-4">
         <input type="email" v-model="email" placeholder="your email" class="form-control form-control-lg"><br>
         <input type="password" v-model="password" placeholder="your password" class="form-control form-control-lg"><br>
         <button type="submit" name="button" class="btn btn-primary">Log In</button>
       </div>
     </form>
-
-    <div class="google oauth">
-      <button type="button" name="button" @click="googleOauth()">Google</button>
-      <a href="http://localhost:3000/api/v1/users/auth/google_oauth2">Google</a>
-    </div>
   </div>
 </template>
 
@@ -33,7 +28,7 @@ export default {
   methods: {
     login () {
       axios.post(`http://localhost:3000/api/v1/user_token`, {
-        auth: {
+        user: {
           email: this.email,
           password: this.password
         }
@@ -43,14 +38,9 @@ export default {
           location.href = '/'
         })
         .catch(e => {
+          this.errors = []
           console.log(e.response)
           this.errors.push(e.response.data)
-        })
-    },
-    googleOauth () {
-      axios.get(`http://localhost:3000/api/v1/users/auth/google_oauth2`)
-        .then(response => {
-          console.log(response)
         })
     }
   }

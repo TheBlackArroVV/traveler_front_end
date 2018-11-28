@@ -9,7 +9,6 @@
         <button type="submit" name="button" class="btn btn-primary">Register</button>
       </div>
     </form>
-    <!-- <button v-on:click="postPost()">postPost</button> -->
   </div>
 </template>
 
@@ -33,7 +32,7 @@ export default {
         body: this.body
       })
         .then(response => {
-          console.log(response.status)
+          location.href = '/#/posts'
         })
         .catch(e => {
           this.errors.push(e)

@@ -2,7 +2,7 @@
   <div class="new_post">
     <h1>Write your own blog</h1>
     {{ errors.length > 0 ? errors : 'Your post was create' }}
-    <form class="new_post_form" v-on:submit="postPost()">
+    <form class="new_post_form" v-on:submit.prevent="postPost()">
       <div class="col-sm-12">
         <input v-model="title" placeholder="title of your post" class="form-control form-control-lg"><br>
         <textarea v-model="body" placeholder="body of your post" class="form-control form-control-lg"></textarea><br>

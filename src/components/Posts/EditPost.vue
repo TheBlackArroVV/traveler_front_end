@@ -1,15 +1,15 @@
 <template>
-  <div class="new_post">
-    <h1>Write your own blog</h1>
-    {{ errors.length > 0 ? errors : 'Your post was create' }}
-    <form class="new_post_form" v-on:submit="postPost()">
+  <div class="edit_post">
+    <h1>Edit this post</h1>
+    {{ errors.length > 0 ? errors : 'Your post was updated' }}
+    <form class="edit_post_form" v-on:submit="updatePost()">
       <div class="col-sm-12">
         <input v-model="title" placeholder="title of your post" class="form-control form-control-lg"><br>
         <textarea v-model="body" placeholder="body of your post" class="form-control form-control-lg"></textarea><br>
-        <button type="submit" name="button" class="btn btn-primary">postPost</button>
+        <button type="submit" name="button" class="btn btn-primary">Update Post</button>
       </div>
     </form>
-    <!-- <button v-on:click="postPost()">postPost</button> -->
+    <router-view></router-view>
   </div>
 </template>
 
@@ -17,7 +17,7 @@
 import axios from 'axios'
 
 export default {
-  name: 'new_post',
+  name: 'edit_post',
   data () {
     return {
       errors: [],
@@ -26,13 +26,14 @@ export default {
     }
   },
   methods: {
-    postPost () {
-      axios.post(`http://localhost:3000/v1/posts/`, {
+    updatePost () {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
+      axios.patch(`http://localhost:3000/api/v1/posts/` + this.$route.params.id, {
         title: this.title,
         body: this.body
       })
         .then(response => {
-          console.log(response.status)
+          location.reload()
         })
         .catch(e => {
           this.errors.push(e)

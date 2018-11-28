@@ -30,7 +30,7 @@ export default {
   },
 
   created () {
-    axios.get(`http://localhost:3000/v1/posts/` + this.$route.params.id)
+    axios.get(`http://localhost:3000/api/v1/posts/` + this.$route.params.id)
       .then(response => {
         this.post = response.data
       })
@@ -41,10 +41,11 @@ export default {
 
   methods: {
     deletePost () {
-      axios.delete(`http://localhost:3000/v1/posts/` + this.$route.params.id)
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
+      axios.delete(`http://localhost:3000/api/v1/posts/` + this.$route.params.id)
         .then(response => {
           console.log(response)
-          console.log(`http://localhost:3000/v1/posts/` + this.$route.params.id)
+          console.log(`http://localhost:3000/api/v1/posts/` + this.$route.params.id)
         })
         .catch(e => {
           this.errors.push(e)

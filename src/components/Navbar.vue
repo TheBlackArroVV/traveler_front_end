@@ -18,6 +18,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/#/registration">Registration</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/#/profile">Profile</a>
+                </li>
             </ul>
           </div>
       </div>
@@ -26,7 +29,6 @@
 
 <script>
 export default {
-    name: 'Navbar'
+  name: 'Navbar'
 }
 </script>
-

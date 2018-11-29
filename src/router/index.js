@@ -7,6 +7,8 @@ import NewPost from '@/components/Posts/NewPost'
 import EditPost from '@/components/Posts/EditPost'
 import Registration from '@/components/Users/Registration'
 import Session from '@/components/Users/Session'
+import Profile from '@/components/Users/Profile'
+import EditProfile from '@/components/Users/EditProfile'
 
 Vue.use(Router)
 
@@ -48,6 +50,16 @@ export default new Router({
       path: '/login',
       name: 'Session',
       component: Session
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile
+    },
+    {
+      path: '/profile/edit',
+      name: 'EditProfile',
+      component: EditProfile
     }
   ]
 })

@@ -3,7 +3,7 @@
     <h1>{{ msg }}</h1>
     <h3>{{ errors.length > 0 ? errors : '' }}</h3>
     <form class="new_user_form" v-on:submit.prevent="login()">
-      <div class="col-sm-4">
+      <div class="col-sm-4 offset-sm-4">
         <input type="email" v-model="email" placeholder="your email" class="form-control form-control-lg"><br>
         <input type="password" v-model="password" placeholder="your password" class="form-control form-control-lg"><br>
         <button type="submit" name="button" class="btn btn-primary">Log In</button>

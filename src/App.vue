@@ -1,12 +1,20 @@
 <template>
   <div id="app">
+    <Navbar/>
     <router-view/>
+    <Footer/>
   </div>
 </template>
 
 <script>
+import Footer from './components/Footer'
+import Navbar from './components/Navbar'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Footer, Navbar
+  }
 }
 </script>
 
@@ -17,11 +25,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
 
 <style lang="scss">
-  // @import './styles/custom-bootstrap.scss';
   @import '../node_modules/bootstrap/scss/bootstrap.scss';
 </style>

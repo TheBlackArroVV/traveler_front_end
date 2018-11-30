@@ -1,7 +1,7 @@
 <template>
   <div id="profile">
+    <img :src="this.user.avatar.url" alt="user avatar" style="width: 500px; height: 300px"><br/>
     {{ this.user.about }}
-    {{ this.user.avatar }}
   </div>
 </template>
 

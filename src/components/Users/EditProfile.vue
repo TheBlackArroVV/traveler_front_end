@@ -34,7 +34,7 @@ export default {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
       axios.patch(`http://localhost:3000/api/v1/users/profiles`, formData)
         .then(response => { 
-          location.reload()
+          this.$router.push('/profile')
         })
     }
   }

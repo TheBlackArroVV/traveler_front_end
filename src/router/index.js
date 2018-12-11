@@ -9,6 +9,7 @@ import Registration from '@/components/Users/Registration'
 import Session from '@/components/Users/Session'
 import Profile from '@/components/Users/Profile'
 import EditProfile from '@/components/Users/EditProfile'
+import Sights from '@/components/Sights/Index'
 
 Vue.use(Router)
 
@@ -60,6 +61,11 @@ export default new Router({
       path: '/profile/edit',
       name: 'EditProfile',
       component: EditProfile
+    },
+    {
+      path: '/sights',
+      name: 'Sights',
+      component: Sights
     }
   ]
 })

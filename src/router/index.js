@@ -12,6 +12,7 @@ import EditProfile from '@/components/Users/EditProfile'
 import Sights from '@/components/Sights/Index'
 import Sight from '@/components/Sights/Show'
 import NewSight from '@/components/Sights/New'
+import EditSight from '@/components/Sights/Edit'
 
 Vue.use(Router)
 
@@ -77,7 +78,14 @@ export default new Router({
     {
       path: '/sights/:id',
       name: 'Sight',
-      component: Sight
+      component: Sight,
+      children: [
+        {
+          path: 'edit',
+          name: 'EditSight',
+          component: EditSight
+        }
+      ]
     }
   ]
 })

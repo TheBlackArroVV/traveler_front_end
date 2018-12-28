@@ -10,6 +10,8 @@ import Session from '@/components/Users/Session'
 import Profile from '@/components/Users/Profile'
 import EditProfile from '@/components/Users/EditProfile'
 import Sights from '@/components/Sights/Index'
+import Sight from '@/components/Sights/Show'
+import NewSight from '@/components/Sights/New'
 
 Vue.use(Router)
 
@@ -66,6 +68,16 @@ export default new Router({
       path: '/sights',
       name: 'Sights',
       component: Sights
+    },
+    {
+      path: '/sights/new',
+      name: 'NewSight',
+      component: NewSight
+    },
+    {
+      path: '/sights/:id',
+      name: 'Sight',
+      component: Sight
     }
   ]
 })

@@ -1,6 +1,17 @@
 <template>
     <div id="sights">
-      {{ this.sights }}
+      <h1>Sights</h1>
+      <ul class="list-group">
+      <div class="row col-sm-12">
+        <li v-for="sight in sights" :key = "sight.id" class="list-group-item col-sm-4">
+          <div>
+            <a :href="'/#/sights/' + sight.id">{{ sight.name }}</a><br>
+            {{ sight.description }}
+          </div>
+        </li>
+      </div>
+      <a href="/#/sights/new">Create a New Sight</a>
+    </ul>
     </div>
 </template>
 

@@ -5,26 +5,28 @@
         <a href="#" class="w3-bar-item w3-button w3-right w3-hover-red w3-text-grey"><i class="fa fa-search"></i></a>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto" v-if="this.$session.get('jwt')">
               <li class="nav-item active">
                 <a class="nav-link" href="/#/">IndexPage <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/#/posts">Posts</a>
-              </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/#/login">Login</a>
+                  <a class="nav-link" href="/#/posts">Posts</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/#/registration">Registration</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/#/profile">Profile</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/#/sights">Sights</a>
+                    <a class="nav-link" href="/#/profile">Profile</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/#/sights">Sights</a>
                 </li>
             </ul>
+          <ul class="navbar-nav mr-auto" v-else>
+                <li class="nav-item">
+                  <a class="nav-link" href="/#/login" v-if="!this.$session.get('jwt')">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/#/registration" v-if="!this.$session.get('jwt')">Registration</a>
+                </li>
+          </ul>
           </div>
       </div>
     </nav>

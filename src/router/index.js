@@ -14,6 +14,7 @@ import Sight from '@/components/Sights/Show'
 import NewSight from '@/components/Sights/New'
 import EditSight from '@/components/Sights/Edit'
 import Topics from '@/components/Forum/Index'
+import Topic from '@/components/Forum/Show'
 
 Vue.use(Router)
 
@@ -92,6 +93,11 @@ export default new Router({
       path: '/forum',
       name: 'Topics',
       component: Topics
+    },
+    {
+      path: '/topics/:id',
+      name: 'Topic',
+      component: Topic
     }
   ]
 })

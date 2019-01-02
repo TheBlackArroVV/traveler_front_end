@@ -18,6 +18,9 @@
                   <li class="nav-item">
                     <a class="nav-link" href="/#/sights">Sights</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/#/forum">Forum</a>
+                </li>
             </ul>
           <ul class="navbar-nav mr-auto" v-else>
                 <li class="nav-item">

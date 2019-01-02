@@ -11,7 +11,6 @@
         </li>
       </div>
       <a href="/#/topics/new">Create a New Topic</a>
-    </ul>
       <router-view></router-view>
     </ul>
   </div>

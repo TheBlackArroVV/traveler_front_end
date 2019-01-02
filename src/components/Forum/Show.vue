@@ -5,40 +5,39 @@
       <!-- <a :href="'/#/posts/' + post.id + '/edit'">Edit this Post</a><br> -->
       <a href="/#/forum" @click="deleteTopic()">Delete this topic</a>
       <router-view></router-view>
-    </ul>
   </div>
 </template>
 
 <script>
-  import axios from 'axios'
+import axios from 'axios'
 
-  export default {
-    name: 'topic',
-    data () {
-      return {
-        topic: '',
-        errors: []
-      }
-    },
+export default {
+  name: 'topic',
+  data () {
+    return {
+      topic: '',
+      errors: []
+    }
+  },
 
-    created () {
+  created () {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
+    axios.get(`http://localhost:3000/api/v1/topics/` + this.$route.params.id)
+      .then(response => {
+        this.topic = response.data
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
+  },
+
+  methods: {
+    deleteTopic () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-      axios.get(`http://localhost:3000/api/v1/topics/` + this.$route.params.id)
-        .then(response => {
-          this.topic = response.data
-        })
-        .catch(e => {
-          this.errors.push(e)
-        })
-    },
-
-    methods: {
-      deleteTopic () {
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-        axios.delete(`http://localhost:3000/api/v1/topics/` + this.$route.params.id)
-      }
+      axios.delete(`http://localhost:3000/api/v1/topics/` + this.$route.params.id)
     }
   }
+}
 </script>
 
 <style scoped>

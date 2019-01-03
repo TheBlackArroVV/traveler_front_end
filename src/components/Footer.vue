@@ -27,6 +27,5 @@ export default {
     width: 100%;
     height: 50px;
     padding-left: 50px;
-    position: absolute;
   }
 </style>

@@ -42,7 +42,7 @@ export default {
       .catch(e => {
         this.errors.push(e)
       })
-      this.getMessages()
+    this.getMessages()
   },
 
   methods: {

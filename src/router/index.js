@@ -16,6 +16,10 @@ import EditSight from '@/components/Sights/Edit'
 import Topics from '@/components/Forum/Index'
 import Topic from '@/components/Forum/Show'
 import NewTopic from '@/components/Forum/New'
+import Trips from '@/components/Trips/Index'
+import Trip from '@/components/Trips/Show'
+import NewTrip from '@/components/Trips/New'
+import EditTrip from '@/components/Trips/Edit'
 
 Vue.use(Router)
 
@@ -104,6 +108,28 @@ export default new Router({
       path: '/topics/:id',
       name: 'Topic',
       component: Topic
+    },
+    {
+      path: '/trips',
+      name: 'Trips',
+      component: Trips
+    },
+    {
+      path: '/trips/new',
+      name: 'NewTrip',
+      component: NewTrip
+    },
+    {
+      path: '/trips/:id',
+      name: 'Trip',
+      component: Trip,
+      children: [
+        {
+          path: 'edit',
+          name: 'EditTrip',
+          component: EditTrip
+        }
+      ]
     }
   ]
 })

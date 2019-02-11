@@ -1,0 +1,84 @@
+<template>
+  <div class="edit_trip">
+    <h1>Edit this trip</h1>
+    {{ errors.length > 0 ? errors : 'Your trip was updated' }}
+    <form class="edit_trip_form" v-on:submit.prevent="updateTrip()">
+      <div class="col-sm-12">
+      <input v-model="description" placeholder="description of your trip" class="form-control form-control-lg"><br>
+        <input v-model="budget" placeholder="budget of your trip" class="form-control form-control-lg"><br>
+        <input v-model="maxMembers" placeholder="max members of your trip" class="form-control form-control-lg"><br>
+        <div class="form-group">
+                    <select v-model="cityId" style="width: 93%">
+                    <option value='' disabled selected>City</option>
+                    <option v-for="city in cities" :key="city.id" :value="city.id">
+                        {{ city.name }}
+                    </option>
+                    </select>
+        </div>
+        <button type="submit" name="button" class="btn btn-primary">Update Post</button>
+      </div>
+    </form>
+    <router-view></router-view>
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+
+export default {
+  name: 'EditTrip',
+  data () {
+    return {
+      errors: [],
+      description: '',
+      budget: '',
+      maxMembers: '',
+      cityId: '',
+      cities: []
+    }
+  },
+  created () {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
+    axios.get(`http://localhost:3000/api/v1/trips/` + this.$route.params.id)
+      .then(response => {
+        this.description = response.data.description
+        this.budget = response.data.budget
+        this.maxMembers = response.data.max_members
+        this.cityId = response.data.city_id
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
+    axios.get(`http://localhost:3000/api/v1/cities`)
+      .then(response => {
+        this.cities = response.data
+      })
+  },
+  methods: {
+    updateTrip () {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
+      axios.patch(`http://localhost:3000/api/v1/trips/` + this.$route.params.id, {
+        trip: {
+          description: this.description,
+          budget: this.budget,
+          max_members: this.maxMembers,
+          city_id: this.cityId
+        }
+      })
+        .then(response => {
+          location.reload()
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+  textarea{
+    height: 338px;
+  }
+</style>

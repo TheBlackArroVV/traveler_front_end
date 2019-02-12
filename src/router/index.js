@@ -20,6 +20,7 @@ import Trips from '@/components/Trips/Index'
 import Trip from '@/components/Trips/Show'
 import NewTrip from '@/components/Trips/New'
 import EditTrip from '@/components/Trips/Edit'
+import Recommendations from '@/components/Sights/Recommendations'
 
 Vue.use(Router)
 
@@ -71,6 +72,11 @@ export default new Router({
       path: '/profile/edit',
       name: 'EditProfile',
       component: EditProfile
+    },
+    {
+      path: '/sights/recommendations',
+      name: 'Recommendations',
+      component: Recommendations
     },
     {
       path: '/sights',

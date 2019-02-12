@@ -9,7 +9,9 @@
         {{ sight.description }}
       </li>
       <a :href="'/#/sights/' + sight.id + '/edit'">Edit this Sight</a><br>
-      <a href="/#/sights" @click="deleteSight()">Delete this Sight</a>
+      <a href="/#/sights" @click="deleteSight()">Delete this Sight</a><br/>
+      <button type="button" @click="likeSight()">Like</button>
+      <button type="button" @click="dislikeSight()">Dislike</button>
       <router-view></router-view>
     </ul>
   </div>
@@ -50,24 +52,23 @@ export default {
         .catch(e => {
           this.errors.push(e)
         })
+    },
+    likeSight () {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
+      axios.patch(`http://localhost:3000/api/v1/sights/` + this.$route.params.id + '/like')
+    },
+    dislikeSight () {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
+      axios.patch(`http://localhost:3000/api/v1/sights/` + this.$route.params.id + '/dislike')
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1, h2 {
   font-weight: normal;
 }
-/* ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-} */
 a {
   color: #42b983;
 }

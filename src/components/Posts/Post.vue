@@ -10,6 +10,20 @@
       </li>
       <a :href="'/#/posts/' + post.id + '/edit'">Edit this Post</a><br>
       <a href="/#/posts" @click="deletePost()">Delete this post</a>
+
+      <ul class="list-group">
+          <li v-for="comment in comments" :key = "comment.id" class="list-group-item col-sm-4"><br/>
+            <div>
+              {{ comment.user_name }}<br/>
+              {{ comment.body }}
+              <button type="submit" name="button" @click="deleteComment(comment.id)">Delete comment</button>
+            </div>
+          </li>
+      </ul>
+      <form class="new_message_form" v-on:submit.prevent="createComment()">
+        <input type="text" v-model="text">
+        <button type="submit" name="button">Create message</button>
+       </form>
       <router-view></router-view>
       <!-- <router-link @click.native="deletePost()" :to="{ name: 'Posts' }">Delete this post</router-link> -->
     </ul>
@@ -25,7 +39,9 @@ export default {
     return {
       msg: 'Blog posts',
       post: '',
-      errors: []
+      errors: [],
+      text: '',
+      comments: []
     }
   },
 
@@ -38,6 +54,7 @@ export default {
       .catch(e => {
         this.errors.push(e)
       })
+    this.getComments()
   },
 
   methods: {
@@ -50,6 +67,30 @@ export default {
         })
         .catch(e => {
           this.errors.push(e)
+        })
+    },
+    createComment () {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
+      axios.post(`http://localhost:3000/api/v1/comments/`, {
+        post_id: this.$route.params.id,
+        comment: {
+          body: this.text
+        }
+      })
+        .then(() => {
+          this.getComments()
+        })
+    },
+    getComments () {
+      axios.get(`http://localhost:3000/api/v1/comments?post_id=` + this.$route.params.id)
+        .then(response => {
+          this.comments = response.data
+        })
+    },
+    deleteComment (id) {
+      axios.delete(`http://localhost:3000/api/v1/comments/` + id)
+        .then(() => {
+          this.getComments()
         })
     }
   }

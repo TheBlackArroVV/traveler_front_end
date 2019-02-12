@@ -24,6 +24,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/#/trips">Trips</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/#/sights/recommendations">Recommendations</a>
+                </li>
             </ul>
           <ul class="navbar-nav mr-auto" v-else>
                 <li class="nav-item">

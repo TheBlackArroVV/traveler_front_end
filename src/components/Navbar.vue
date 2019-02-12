@@ -21,6 +21,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/#/forum">Forum</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/#/trips">Trips</a>
+                </li>
             </ul>
           <ul class="navbar-nav mr-auto" v-else>
                 <li class="nav-item">

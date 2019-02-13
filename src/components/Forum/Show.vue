@@ -21,6 +21,7 @@
 
 <script>
 import axios from 'axios'
+import Api from '../../backend/Api'
 
 export default {
   name: 'topic',
@@ -35,7 +36,7 @@ export default {
 
   created () {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-    axios.get(`http://localhost:3000/api/v1/topics/` + this.$route.params.id)
+    axios.get(Api.topicPath(this.$route.params.id))
       .then(response => {
         this.topic = response.data
       })
@@ -47,18 +48,18 @@ export default {
 
   methods: {
     getMessages () {
-      axios.get(`http://localhost:3000/api/v1/topics/` + this.$route.params.id + `/messages`)
+      axios.get(Api.messagesPath(this.$route.params.id))
         .then(response => {
           this.messages = response.data
         })
     },
     deleteTopic () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-      axios.delete(`http://localhost:3000/api/v1/topics/` + this.$route.params.id)
+      axios.delete(Api.topicPath(this.$route.params.id))
     },
     createMessage () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-      axios.post(`http://localhost:3000/api/v1/topics/` + this.$route.params.id + `/messages`, {
+      axios.post(Api.messagesPath(this.$route.params.id), {
         message: {
           text: this.text
         }

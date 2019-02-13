@@ -22,6 +22,7 @@
 
 <script>
 import axios from 'axios'
+import Api from '../../backend/Api'
 
 export default {
   name: 'new_topic',
@@ -37,7 +38,7 @@ export default {
 
   created () {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-    axios.get(`http://localhost:3000/api/v1/cities`)
+    axios.get(Api.citiesIndexPath())
       .then(response => {
         this.cities = response.data
       })
@@ -46,7 +47,7 @@ export default {
   methods: {
     createTopic () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-      axios.post(`http://localhost:3000/api/v1/topics`, {
+      axios.post(Api.topicsCreatePath(), {
         topic: {
           title: this.title,
           description: this.description,

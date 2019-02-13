@@ -19,6 +19,7 @@
 
 <script>
 import axios from 'axios'
+import Api from '../../backend/Api.js'
 
 export default {
   name: 'Sight',
@@ -32,7 +33,7 @@ export default {
 
   created () {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-    axios.get(`http://localhost:3000/api/v1/sights/` + this.$route.params.id)
+    axios.get(Api.sightPath(this.$route.params.id))
       .then(response => {
         this.sight = response.data
       })
@@ -44,22 +45,18 @@ export default {
   methods: {
     deleteSight () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-      axios.delete(`http://localhost:3000/api/v1/sights/` + this.$route.params.id)
-        .then(response => {
-          console.log(response)
-          console.log(`http://localhost:3000/api/v1/sights/` + this.$route.params.id)
-        })
+      axios.delete(Api.sightPath(this.$route.params.id))
         .catch(e => {
           this.errors.push(e)
         })
     },
     likeSight () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-      axios.patch(`http://localhost:3000/api/v1/sights/` + this.$route.params.id + '/like')
+      axios.patch(Api.sightLikePath(this.$route.params.id))
     },
     dislikeSight () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-      axios.patch(`http://localhost:3000/api/v1/sights/` + this.$route.params.id + '/dislike')
+      axios.patch(Api.sightDislikePath(this.$route.params.id))
     }
   }
 }

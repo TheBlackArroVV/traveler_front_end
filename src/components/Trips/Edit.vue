@@ -24,6 +24,7 @@
 
 <script>
 import axios from 'axios'
+import Api from '../../backend/Api.js'
 
 export default {
   name: 'EditTrip',
@@ -39,7 +40,7 @@ export default {
   },
   created () {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-    axios.get(`http://localhost:3000/api/v1/trips/` + this.$route.params.id)
+    axios.get(Api.tripPath(this.$route.params.id))
       .then(response => {
         this.description = response.data.description
         this.budget = response.data.budget
@@ -49,7 +50,7 @@ export default {
       .catch(e => {
         this.errors.push(e)
       })
-    axios.get(`http://localhost:3000/api/v1/cities`)
+    axios.get(Api.citiesIndexPath())
       .then(response => {
         this.cities = response.data
       })
@@ -57,7 +58,7 @@ export default {
   methods: {
     updateTrip () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-      axios.patch(`http://localhost:3000/api/v1/trips/` + this.$route.params.id, {
+      axios.patch(Api.tripPath(this.$route.params.id), {
         trip: {
           description: this.description,
           budget: this.budget,

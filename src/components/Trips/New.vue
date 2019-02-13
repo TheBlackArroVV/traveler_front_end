@@ -23,6 +23,7 @@
 
 <script>
 import axios from 'axios'
+import Api from '../../backend/Api.js'
 
 export default {
   name: 'NewTrip',
@@ -38,7 +39,7 @@ export default {
   },
   created () {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-    axios.get(`http://localhost:3000/api/v1/cities`)
+    axios.get(Api.citiesIndexPath())
       .then(response => {
         this.cities = response.data
       })
@@ -46,7 +47,7 @@ export default {
   methods: {
     postTrip () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-      axios.post(`http://localhost:3000/api/v1/trips/`, {
+      axios.post(Api.tripsPath(), {
         description: this.description,
         budget: this.budget,
         max_members: this.maxMembers,

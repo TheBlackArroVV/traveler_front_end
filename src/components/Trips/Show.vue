@@ -18,6 +18,7 @@
 
 <script>
 import axios from 'axios'
+import Api from '../../backend/Api.js'
 
 export default {
   name: 'Trip',
@@ -31,7 +32,7 @@ export default {
 
   created () {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-    axios.get(`http://localhost:3000/api/v1/trips/` + this.$route.params.id)
+    axios.get(Api.tripPath(this.$route.params.id))
       .then(response => {
         this.trip = response.data
       })
@@ -43,7 +44,7 @@ export default {
   methods: {
     deleteTrip () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-      axios.delete(`http://localhost:3000/api/v1/trips/` + this.$route.params.id)
+      axios.delete(Api.tripPath(this.$route.params.id))
         .then(response => {
           location.href = '/#/trips'
         })
@@ -53,7 +54,7 @@ export default {
     },
     joinTrip () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-      axios.patch(`http://localhost:3000/api/v1/trips/` + this.$route.params.id + '/join')
+      axios.patch(Api.joinTripPath(this.$route.params.id))
     }
   }
 }

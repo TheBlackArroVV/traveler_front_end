@@ -32,6 +32,7 @@
 
 <script>
 import axios from 'axios'
+import Api from '../../backend/Api.js'
 
 export default {
   name: 'post',
@@ -47,7 +48,7 @@ export default {
 
   created () {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-    axios.get(`http://localhost:3000/api/v1/posts/` + this.$route.params.id)
+    axios.get(Api.postPath(this.$route.params.id))
       .then(response => {
         this.post = response.data
       })
@@ -60,10 +61,8 @@ export default {
   methods: {
     deletePost () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-      axios.delete(`http://localhost:3000/api/v1/posts/` + this.$route.params.id)
+      axios.delete(Api.postPath(this.$route.params.id))
         .then(response => {
-          console.log(response)
-          console.log(`http://localhost:3000/api/v1/posts/` + this.$route.params.id)
         })
         .catch(e => {
           this.errors.push(e)
@@ -71,7 +70,7 @@ export default {
     },
     createComment () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-      axios.post(`http://localhost:3000/api/v1/comments/`, {
+      axios.post(Api.commentPath(), {
         post_id: this.$route.params.id,
         comment: {
           body: this.text
@@ -82,13 +81,14 @@ export default {
         })
     },
     getComments () {
-      axios.get(`http://localhost:3000/api/v1/comments?post_id=` + this.$route.params.id)
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
+      axios.get(Api.commentsPath(this.$route.params.id))
         .then(response => {
           this.comments = response.data
         })
     },
     deleteComment (id) {
-      axios.delete(`http://localhost:3000/api/v1/comments/` + id)
+      axios.delete(Api.commentDeletePath(id))
         .then(() => {
           this.getComments()
         })

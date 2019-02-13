@@ -15,6 +15,7 @@
 
 <script>
 import axios from 'axios'
+import Api from '../../backend/Api.js'
 
 export default {
   name: 'edit_post',
@@ -27,7 +28,7 @@ export default {
   },
   created () {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-    axios.get(`http://localhost:3000/api/v1/posts/` + this.$route.params.id)
+    axios.get(Api.postPath(this.$route.params.id))
       .then(response => {
         this.title = response.data.title
         this.body = response.data.body
@@ -39,7 +40,7 @@ export default {
   methods: {
     updatePost () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-      axios.patch(`http://localhost:3000/api/v1/posts/` + this.$route.params.id, {
+      axios.patch(Api.postPath(this.$route.params.id), {
         post: {
           title: this.title,
           body: this.body

@@ -17,6 +17,7 @@
 
 <script>
 import axios from 'axios'
+import Api from '../../backend/Api.js'
 
 export default {
   name: 'Sights',
@@ -27,7 +28,7 @@ export default {
   },
   beforeCreate () {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-    axios.get(`http://localhost:3000/api/v1/sights`)
+    axios.get(Api.sightsPath())
       .then(response => {
         this.sights = response.data
       })

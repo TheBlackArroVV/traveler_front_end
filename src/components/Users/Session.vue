@@ -14,6 +14,7 @@
 
 <script>
 import axios from 'axios'
+import Api from '../../backend/Api.js'
 
 export default {
   name: 'session',
@@ -27,7 +28,7 @@ export default {
   },
   methods: {
     login () {
-      axios.post(`http://localhost:3000/api/v1/user_token`, {
+      axios.post(Api.jwtPath(), {
         user: {
           email: this.email,
           password: this.password

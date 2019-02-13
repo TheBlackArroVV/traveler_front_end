@@ -14,6 +14,7 @@
 
 <script>
 import axios from 'axios'
+import Api from '../../backend/Api.js'
 
 export default {
   name: 'new_post',
@@ -27,7 +28,7 @@ export default {
   methods: {
     postPost () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-      axios.post(`http://localhost:3000/api/v1/posts/`, {
+      axios.post(Api.postsPath(), {
         title: this.title,
         body: this.body
       })

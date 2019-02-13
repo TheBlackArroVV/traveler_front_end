@@ -22,6 +22,7 @@
 
 <script>
 import axios from 'axios'
+import Api from '../../backend/Api.js'
 
 export default {
   name: 'EditSight',
@@ -36,11 +37,11 @@ export default {
   },
   beforeCreate () {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-    axios.get(`http://localhost:3000/api/v1/cities`)
+    axios.get(Api.citiesIndexPath())
       .then(response => {
         this.cities = response.data
       })
-    axios.get(`http://localhost:3000/api/v1/sights/` + this.$route.params.id)
+    axios.get(Api.sightPath(this.$route.params.id))
       .then(response => {
         this.name = response.data.name
         this.cityId = response.data.city_id
@@ -49,7 +50,7 @@ export default {
   },
   methods: {
     updateSight () {
-      axios.patch(`http://localhost:3000/api/v1/sights/` + this.$route.params.id, {
+      axios.patch(Api.sightPath(this.$route.params.id), {
         sight: {
           name: this.name,
           description: this.description,

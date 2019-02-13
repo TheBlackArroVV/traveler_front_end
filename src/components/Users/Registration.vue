@@ -16,6 +16,7 @@
 
 <script>
 import axios from 'axios'
+import Api from '../../backend/Api.js'
 
 export default {
   name: 'registration',
@@ -31,7 +32,7 @@ export default {
   },
   methods: {
     register () {
-      axios.post(`http://localhost:3000/api/v1/users`, {
+      axios.post(Api.registrationsPath(), {
         user: {
           email: this.email,
           password: this.password,

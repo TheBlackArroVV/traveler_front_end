@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/components/Index'
 import Posts from '@/components/Posts/Posts'
 import Post from '@/components/Posts/Post'
 import NewPost from '@/components/Posts/NewPost'
@@ -28,8 +27,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Index',
-      component: Index
+      name: 'Session',
+      component: Session
     },
     {
       path: '/posts',

@@ -26,6 +26,11 @@ export default {
       errors: []
     }
   },
+  beforeCreate () {
+    if (this.$session.get('jwt')) {
+      this.$router.push('/posts')
+    }
+  },
   methods: {
     login () {
       axios.post(Api.jwtPath(), {
@@ -36,7 +41,7 @@ export default {
       })
         .then(response => {
           this.$session.set('jwt', response.data.jwt)
-          location.href = '/'
+          location.href = '/#/posts'
         })
         .catch(e => {
           this.errors = []

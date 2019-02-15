@@ -24,7 +24,7 @@ export default {
     return `http://localhost:3000/api/v1/comments`
   },
   commentDeletePath (id) {
-    return `http://localhost:3000/api/v1/comments` + id
+    return `http://localhost:3000/api/v1/comments/` + id
   },
   commentsPath (id) {
     return `http://localhost:3000/api/v1/comments?post_id=` + id

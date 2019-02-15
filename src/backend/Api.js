@@ -15,7 +15,7 @@ export default {
     return `http://localhost:3000/api/v1/topics/` + topicId + `/messages`
   },
   postPath (id) {
-    return `http://localhost:3000/api/v1/posts` + id
+    return `http://localhost:3000/api/v1/posts/` + id
   },
   postsPath () {
     return `http://localhost:3000/api/v1/posts`

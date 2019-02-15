@@ -41,7 +41,7 @@ export default {
       })
         .then(response => {
           this.$session.set('jwt', response.data.jwt)
-          location.href = '/#/posts'
+          this.$router.go('posts')
         })
         .catch(e => {
           this.errors = []

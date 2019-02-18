@@ -70,7 +70,7 @@ export default {
           location.reload()
         })
         .catch(e => {
-          this.errors.push(e)
+          this.errors.push(e.data.errors.text)
         })
     }
   }

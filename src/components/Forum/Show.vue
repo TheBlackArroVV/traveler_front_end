@@ -56,6 +56,9 @@ export default {
     deleteTopic () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
       axios.delete(Api.topicPath(this.$route.params.id))
+        .then(() => {
+          this.$router.go('forum')
+        })
     },
     createMessage () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')

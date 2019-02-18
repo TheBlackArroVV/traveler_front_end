@@ -23,6 +23,13 @@ export default {
       avatar: ''
     }
   },
+  beforeCreate () {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
+    axios.get(Api.profilePath())
+      .then(response => {
+        this.about = response.data.about
+      })
+  },
   methods: {
     processFile (event) {
       this.avatar = event.target.files[0]
@@ -33,9 +40,9 @@ export default {
       formData.append('profile[about]', this.about)
 
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-      axios.patch(Api.profilePath, formData)
+      axios.patch(Api.profilePath(), formData)
         .then(response => {
-          this.$router.push('/profile')
+          location.href = '/#/profile'
         })
     }
   }

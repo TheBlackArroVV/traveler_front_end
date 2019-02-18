@@ -1,7 +1,8 @@
 <template>
   <div id="profile">
     <img :src="this.user.avatar.url" alt="user avatar" style="width: 500px; height: 300px"><br/>
-    {{ this.user.about }}
+    {{ this.user.about }}<br/>
+    <a href="/#/profile/edit">Edit Profile</a>
   </div>
 </template>
 
@@ -21,7 +22,6 @@ export default {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
     axios.get(Api.profilePath())
       .then(response => {
-        console.log(response.data)
         this.user = response.data
       })
   }

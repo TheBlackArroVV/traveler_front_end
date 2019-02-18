@@ -25,7 +25,6 @@
         <button type="submit" name="button">Create message</button>
        </form>
       <router-view></router-view>
-      <!-- <router-link @click.native="deletePost()" :to="{ name: 'Posts' }">Delete this post</router-link> -->
     </ul>
   </div>
 </template>
@@ -63,6 +62,7 @@ export default {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
       axios.delete(Api.postPath(this.$route.params.id))
         .then(response => {
+          this.$router.go('posts')
         })
         .catch(e => {
           this.errors.push(e)

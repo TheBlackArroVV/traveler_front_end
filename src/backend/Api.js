@@ -15,7 +15,7 @@ export default {
     return `https://travelerapiapp.herokuapp.com//api/v1/topics/` + topicId + `/messages`
   },
   postPath (id) {
-    return `https://travelerapiapp.herokuapp.com//api/v1/posts` + id
+    return `https://travelerapiapp.herokuapp.com//api/v1/posts/` + id
   },
   postsPath () {
     return `https://travelerapiapp.herokuapp.com//api/v1/posts`

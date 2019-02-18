@@ -42,7 +42,7 @@ export default {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
       axios.patch(Api.profilePath(), formData)
         .then(response => {
-          this.$router.go('profile')
+          location.href = '/#/profile'
         })
     }
   }

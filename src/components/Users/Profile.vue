@@ -1,6 +1,6 @@
 <template>
   <div id="profile">
-    <img :src="this.user.avatar.url" alt="user avatar" style="width: 500px; height: 300px"><br/>
+    <img :src="this.user.avatar.url || personal_default_avatar_for_mobile_phone_app__146524.png" style="width: 500px; height: 300px"><br/>
     {{ this.user.about }}<br/>
     <a href="/#/profile/edit">Edit Profile</a>
   </div>

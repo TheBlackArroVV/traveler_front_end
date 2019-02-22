@@ -1,7 +1,9 @@
 <template>
   <div class="NewTrip">
     <h1>Create your own trip</h1>
-    {{ errors.length > 0 ? errors : 'Your trip was created' }}
+    <li v-for="error in errors" :key="error[0]">
+      <h5>{{ error[0] }} {{ error[1][0] }}</h5><br/>
+    </li>
     <form class="new_trip_form" v-on:submit.prevent="postTrip()">
       <div class="col-sm-12">
         <input v-model="description" placeholder="description of your trip" class="form-control form-control-lg"><br>
@@ -57,7 +59,7 @@ export default {
           location.href = '/#/trips'
         })
         .catch(e => {
-          this.errors.push(e)
+          this.errors = Object.entries(e.response.data)
         })
     }
   }

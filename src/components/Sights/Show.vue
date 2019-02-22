@@ -46,6 +46,9 @@ export default {
     deleteSight () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
       axios.delete(Api.sightPath(this.$route.params.id))
+        .then(() => {
+          this.$router.go('sights')
+        })
         .catch(e => {
           this.errors.push(e)
         })

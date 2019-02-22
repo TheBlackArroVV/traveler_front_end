@@ -14,6 +14,18 @@ Vue.config.productionTip = false
 Vue.use(VueSessionStorage)
 Vue.use(BootstrapVue)
 
+router.beforeEach((to, from, next) => {
+  if (Vue.prototype.$session.exists('jwt')) {
+    next()
+  } else {
+    if (to.name === 'Session' || to.name === 'Registration') {
+      next()
+    } else {
+      next('/')
+    }
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

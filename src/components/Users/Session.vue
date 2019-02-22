@@ -1,7 +1,9 @@
 <template>
   <div class="session">
     <h1>{{ msg }}</h1>
-    <h3>{{ errors.length > 0 ? errors : '' }}</h3>
+    <li v-for="error in errors" :key="error">
+      <h5>{{ error }}</h5>
+    </li>
     <form class="new_user_form" v-on:submit.prevent="login()">
       <div class="col-sm-4 offset-sm-4">
         <input type="email" v-model="email" placeholder="your email" class="form-control form-control-lg"><br>
@@ -45,8 +47,7 @@ export default {
         })
         .catch(e => {
           this.errors = []
-          console.log(e.response)
-          this.errors.push(e.response.data)
+          this.errors.push('Wrong credentials')
         })
     }
   }

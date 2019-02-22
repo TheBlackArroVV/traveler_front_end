@@ -1,7 +1,9 @@
 <template>
   <div class="registration">
     <h1>{{ msg }}</h1>
-    <h3>{{ errors.length > 0 ? errors : '' }}</h3>
+    <li v-for="error in errors" :key="error">
+      <h5>{{ error }}</h5>
+    </li>
     <h3>{{ registred ? 'You was succesfuly registred' : '' }}</h3>
     <form class="new_user_form" v-on:submit.prevent="register()">
       <div class="col-sm-4 offset-sm-4">
@@ -46,8 +48,7 @@ export default {
         })
         .catch(e => {
           this.errors = []
-          console.log(e.response)
-          this.errors.push(e.response.data)
+          this.errors.push(e.response.data.errors)
           this.registred = false
         })
     }

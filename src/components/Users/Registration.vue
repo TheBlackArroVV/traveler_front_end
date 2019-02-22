@@ -1,8 +1,8 @@
 <template>
   <div class="registration">
     <h1>{{ msg }}</h1>
-    <li v-for="error in errors" :key="error">
-      <h5>{{ error }}</h5>
+    <li v-for="error in errors[0]" :key="error">
+      <h5>{{ error[0] }} {{ error[1][0] }}</h5>
     </li>
     <h3>{{ registred ? 'You was succesfuly registred' : '' }}</h3>
     <form class="new_user_form" v-on:submit.prevent="register()">
@@ -48,7 +48,7 @@ export default {
         })
         .catch(e => {
           this.errors = []
-          this.errors.push(e.response.data.errors)
+          this.errors.push(Object.entries(e.response.data.errors))
           this.registred = false
         })
     }

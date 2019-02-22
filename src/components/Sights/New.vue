@@ -1,7 +1,9 @@
 <template>
   <div class="new_sight">
     <h1>Create a new sight</h1>
-    {{ errors.length > 0 ? errors : 'Your sight was created' }}
+    <li v-for="error in errors[0]" :key="error[0]">
+      <h5>{{ error[0] }} {{ error[1][0] }}</h5><br/>
+    </li>
     <form class="new_sight_form" v-on:submit.prevent="postSight()">
       <div class="col-sm-12">
         <div class="form-group">
@@ -56,7 +58,7 @@ export default {
           location.href = '/#/sights'
         })
         .catch(e => {
-          this.errors.push(e)
+          this.errors.push(Object.entries(e.response.data))
         })
     }
   }

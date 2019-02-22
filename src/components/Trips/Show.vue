@@ -1,5 +1,8 @@
 <template>
   <div class="trip">
+    <li v-for="error in errors[0]" :key="error[0]">
+      <h5>{{ error[0] }} {{ error[1][0] }}</h5><br/>
+    </li>
     <h1>{{ msg }}</h1>
     <ul>
       <li>
@@ -55,6 +58,9 @@ export default {
     joinTrip () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
       axios.patch(Api.joinTripPath(this.$route.params.id))
+        .catch(e => {
+          this.errors = Object.entries(e.response.data)
+        })
     }
   }
 }

@@ -1,7 +1,9 @@
 <template lang="html">
   <div id="new_topic">
     <h1>Describe your problem</h1>
-    {{ errors.length > 0 ? errors : 'Topic was created' }}
+    <li v-for="error in errors[0]" :key="error[0]">
+      <h5>{{ error[0] }} {{ error[1][0] }}</h5><br/>
+    </li>
     <form class="new_topic_form" v-on:submit.prevent="createTopic()">
       <div class="col-sm-12">
         <input type="text" v-model="title" placeholder="title">
@@ -58,7 +60,7 @@ export default {
           location.href = '/#/forum'
         })
         .catch(e => {
-          this.errors = e
+          this.errors.push(Object.entries(e.response.data))
         })
     }
   }

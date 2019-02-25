@@ -1,7 +1,9 @@
 <template>
   <div class="edit_trip">
     <h1>Edit this trip</h1>
-    {{ errors.length > 0 ? errors : 'Your trip was updated' }}
+    <li v-for="error in errors[0]" :key="error[0]">
+      <h5>{{ error[0] }} {{ error[1][0] }}</h5><br/>
+    </li>
     <form class="edit_trip_form" v-on:submit.prevent="updateTrip()">
       <div class="col-sm-12">
       <input v-model="description" placeholder="description of your trip" class="form-control form-control-lg"><br>
@@ -70,7 +72,8 @@ export default {
           location.reload()
         })
         .catch(e => {
-          this.errors.push(e.data.errors.text)
+          this.errors.push(e.data.errors)
+          console.log(this.errors)
         })
     }
   }

@@ -1,12 +1,14 @@
 <template>
   <div class="new_post">
     <h1>Write your own blog</h1>
-    {{ errors.length > 0 ? errors : 'Your post was create' }}
+    <li v-for="error in errors[0]" :key="error[0]">
+      <h5>{{ error[0] }} {{ error[1][0] }}</h5><br/>
+    </li>
     <form class="new_post_form" v-on:submit.prevent="postPost()">
       <div class="col-sm-12">
         <input v-model="title" placeholder="title of your post" class="form-control form-control-lg"><br>
         <textarea v-model="body" placeholder="body of your post" class="form-control form-control-lg"></textarea><br>
-        <button type="submit" name="button" class="btn btn-primary">Register</button>
+        <button type="submit" name="button" class="btn btn-primary">Create</button>
       </div>
     </form>
   </div>
@@ -27,16 +29,17 @@ export default {
   },
   methods: {
     postPost () {
+      this.errors = []
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
       axios.post(Api.postsPath(), {
         title: this.title,
         body: this.body
       })
-        .then(response => {
+        .then(_ => {
           location.href = '/#/posts'
         })
         .catch(e => {
-          this.errors.push(e)
+          this.errors.push(Object.entries(e.response.data))
         })
     }
   }

@@ -1,7 +1,9 @@
 <template>
   <div class="edit_post">
     <h1>Edit this post</h1>
-    {{ errors.length > 0 ? errors : 'Your post was updated' }}
+    <li v-for="error in errors[0]" :key="error">
+      <h5>{{ error }}</h5>
+    </li>
     <form class="edit_post_form" v-on:submit.prevent="updatePost()">
       <div class="col-sm-12">
         <input v-model="title" placeholder="title of your post" class="form-control form-control-lg"><br>
@@ -39,6 +41,7 @@ export default {
   },
   methods: {
     updatePost () {
+      this.errors = []
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
       axios.patch(Api.postPath(this.$route.params.id), {
         post: {
@@ -50,7 +53,7 @@ export default {
           location.reload()
         })
         .catch(e => {
-          this.errors.push(e.response.data.errors.text)
+          this.errors.push(Object.entries(e.response.data)[0])
         })
     }
   }

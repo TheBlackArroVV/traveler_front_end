@@ -22,8 +22,7 @@ export default {
   name: 'cities',
   data () {
     return {
-      cities: [],
-      errors: []
+      cities: []
     }
   },
   created () {
@@ -33,7 +32,7 @@ export default {
     deleteCity (id) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
       axios.delete(Api.cityPath(id))
-        .then(_ => {
+        .then(() => {
           this.getCities()
         })
     },

@@ -20,7 +20,8 @@ import Trip from '@/components/Trips/Show'
 import NewTrip from '@/components/Trips/New'
 import EditTrip from '@/components/Trips/Edit'
 import Recommendations from '@/components/Sights/Recommendations'
-import Cities from '@/components/Admin/Cities/Cities'
+import Cities from '@/components/Admin/Cities/Index'
+import AdminTrips from '@/components/Admin/Trips/Trips'
 
 Vue.use(Router)
 
@@ -141,6 +142,11 @@ export default new Router({
       path: '/admin/cities',
       name: 'cities',
       component: Cities
+    },
+    {
+      path: '/admin/trips',
+      name: 'trips',
+      component: AdminTrips
     }
   ]
 })

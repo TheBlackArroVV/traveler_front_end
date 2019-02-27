@@ -22,6 +22,7 @@ import EditTrip from '@/components/Trips/Edit'
 import Recommendations from '@/components/Sights/Recommendations'
 import Cities from '@/components/Admin/Cities/Index'
 import AdminTrips from '@/components/Admin/Trips/Trips'
+import AdminTopics from '@/components/Admin/Topics/Topics'
 
 Vue.use(Router)
 
@@ -147,6 +148,11 @@ export default new Router({
       path: '/admin/trips',
       name: 'trips',
       component: AdminTrips
+    },
+    {
+      path: '/admin/topics',
+      name: 'topics',
+      component: AdminTopics
     }
   ]
 })

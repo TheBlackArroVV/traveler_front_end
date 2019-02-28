@@ -12,7 +12,7 @@
             </li>
           </div>
         </ul>
-    </div> 
+    </div>
 </template>
 
 <script>
@@ -20,31 +20,31 @@ import axios from 'axios'
 import Api from '../../../backend/AdminApi.js'
 
 export default {
-	name: 'posts',
-	data () {
-		return {
-			posts: []
-		}
-	},
-	created () {
-		this.getPosts()
-	},
-	methods: {
-		getPosts () {
+  name: 'posts',
+  data () {
+    return {
+      posts: []
+    }
+  },
+  created () {
+    this.getPosts()
+  },
+  methods: {
+    getPosts () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-			axios.get(Api.postsPath())
-				.then(response => {
-					this.posts = response.data
-				})			
-		},
-		deletePost (id) {
+      axios.get(Api.postsPath())
+        .then(response => {
+          this.posts = response.data
+        })
+    },
+    deletePost (id) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-			axios.delete(Api.postPath(id))
-				.then(() => {
-					this.getPosts()
-				})
-		} 
-	}
+      axios.delete(Api.postPath(id))
+        .then(() => {
+          this.getPosts()
+        })
+    }
+  }
 }
 </script>
 

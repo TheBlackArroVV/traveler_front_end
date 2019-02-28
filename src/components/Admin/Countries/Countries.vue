@@ -11,7 +11,7 @@
             </li>
           </div>
         </ul>
-    </div> 
+    </div>
 </template>
 
 <script>
@@ -19,31 +19,31 @@ import axios from 'axios'
 import Api from '../../../backend/AdminApi.js'
 
 export default {
-	name: 'countries',
-	data () {
-		return {
-			countries: []
-		}
-	},
-	created () {
-		this.getCountries()
-	},
-	methods: {
-		getCountries () {
+  name: 'countries',
+  data () {
+    return {
+      countries: []
+    }
+  },
+  created () {
+    this.getCountries()
+  },
+  methods: {
+    getCountries () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-			axios.get(Api.countriesPath())
-				.then(response => {
-					this.countries = response.data
-				})			
-		},
-		deleteCOuntry (id) {
+      axios.get(Api.countriesPath())
+        .then(response => {
+          this.countries = response.data
+        })
+    },
+    deleteCOuntry (id) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-			axios.delete(Api.countryPath(id))
-				.then(() => {
-					this.getCountries()
-				})
-		} 
-	}
+      axios.delete(Api.countryPath(id))
+        .then(() => {
+          this.getCountries()
+        })
+    }
+  }
 }
 </script>
 

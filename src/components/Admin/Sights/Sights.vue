@@ -12,7 +12,7 @@
             </li>
           </div>
         </ul>
-    </div> 
+    </div>
 </template>
 
 <script>
@@ -20,30 +20,30 @@ import axios from 'axios'
 import Api from '../../../backend/AdminApi.js'
 
 export default {
-	name: 'sights',
-	data () {
-		return {
-			sights: []
-		}
-	},
-	created () {
-		this.getSights()
-	},
-	methods: {
-		getSights () {
+  name: 'sights',
+  data () {
+    return {
+      sights: []
+    }
+  },
+  created () {
+    this.getSights()
+  },
+  methods: {
+    getSights () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-			axios.get(Api.sightsPath())
-				.then(response => {
-					this.sights = response.data
-				})			
-		},
-		deleteSight (id) {
+      axios.get(Api.sightsPath())
+        .then(response => {
+          this.sights = response.data
+        })
+    },
+    deleteSight (id) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-			axios.delete(Api.sightPath(id))
-				.then(() => {
-					this.getSights()
-				})
-		} 
+      axios.delete(Api.sightPath(id))
+        .then(() => {
+          this.getSights()
+        })
+    }
   }
 }
 </script>

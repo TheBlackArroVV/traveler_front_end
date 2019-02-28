@@ -22,7 +22,7 @@ export default {
   data () {
     return {
       name: '',
-      errors: [],
+      errors: []
     }
   },
   beforeCreate () {

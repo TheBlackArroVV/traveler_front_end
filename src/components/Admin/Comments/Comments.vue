@@ -11,7 +11,7 @@
             </li>
           </div>
         </ul>
-    </div> 
+    </div>
 </template>
 
 <script>
@@ -19,31 +19,31 @@ import axios from 'axios'
 import Api from '../../../backend/AdminApi.js'
 
 export default {
-	name: 'comments',
-	data () {
-		return {
-			comments: []
-		}
-	},
-	created () {
-		this.getComments()
-	},
-	methods: {
-		getComments () {
+  name: 'comments',
+  data () {
+    return {
+      comments: []
+    }
+  },
+  created () {
+    this.getComments()
+  },
+  methods: {
+    getComments () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-			axios.get(Api.commentsPath())
-				.then(response => {
-					this.comments = response.data
-				})			
-		},
-		deleteComment (id) {
+      axios.get(Api.commentsPath())
+        .then(response => {
+          this.comments = response.data
+        })
+    },
+    deleteComment (id) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-			axios.delete(Api.commentPath(id))
-				.then(() => {
-					this.getComments()
-				})
-		} 
-	}
+      axios.delete(Api.commentPath(id))
+        .then(() => {
+          this.getComments()
+        })
+    }
+  }
 }
 </script>
 

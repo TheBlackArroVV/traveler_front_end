@@ -11,7 +11,7 @@
             </li>
           </div>
         </ul>
-    </div> 
+    </div>
 </template>
 
 <script>
@@ -19,31 +19,31 @@ import axios from 'axios'
 import Api from '../../../backend/AdminApi.js'
 
 export default {
-	name: 'messages',
-	data () {
-		return {
-			messages: []
-		}
-	},
-	created () {
-		this.getMessages()
-	},
-	methods: {
-		getMessages () {
+  name: 'messages',
+  data () {
+    return {
+      messages: []
+    }
+  },
+  created () {
+    this.getMessages()
+  },
+  methods: {
+    getMessages () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-			axios.get(Api.messagesPath())
-				.then(response => {
-					this.messages = response.data
-				})			
-		},
-		deleteMessage (id) {
+      axios.get(Api.messagesPath())
+        .then(response => {
+          this.messages = response.data
+        })
+    },
+    deleteMessage (id) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-			axios.delete(Api.messagePath(id))
-				.then(() => {
-					this.getMessages()
-				})
-		} 
-	}
+      axios.delete(Api.messagePath(id))
+        .then(() => {
+          this.getMessages()
+        })
+    }
+  }
 }
 </script>
 

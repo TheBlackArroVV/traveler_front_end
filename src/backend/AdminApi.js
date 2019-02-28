@@ -11,6 +11,9 @@ export default {
   countryPath (id) {
     return `http://localhost:3000/api/admin/country/` + id
   },
+  usersPath () {
+    return `http://localhost:3000/api/admin/users`
+  },
   userPath (id) {
     return `http://localhost:3000/api/admin/users/` + id
   },

@@ -31,6 +31,7 @@ import AdminUsers from '@/components/Admin/Users/Users'
 import AdminCountries from '@/components/Admin/Countries/Countries'
 import NewAdminCountry from '@/components/Admin/Countries/NewCountry'
 import EditAdminCountry from '@/components/Admin/Countries/UpdateCountry'
+import NewAdminCity from '@/components/Admin/Cities/New'
 
 Vue.use(Router)
 
@@ -151,6 +152,11 @@ export default new Router({
       path: '/admin/cities',
       name: 'cities',
       component: Cities
+    },
+    {
+      path: '/admin/cities/new',
+      name: 'cities',
+      component: NewAdminCity
     },
     {
       path: '/admin/trips',

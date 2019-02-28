@@ -1,13 +1,13 @@
 <template>
-    <div class="sights">
-        <h1>Sights</h1>
+    <div class="posts">
+        <h1>Posts</h1>
         <ul class="list-group">
           <div class="row col-sm-12">
-            <li v-for="sight in sights" :key="sight.id" class="list-group-item col-sm-4"><br/>
+            <li v-for="post in posts" :key="post.id" class="list-group-item col-sm-4"><br/>
                 <div>
-                    {{ topic.name }}<br/>
-                    {{ topic.description }}<br/>
-                    <button type="submit" name="button" @click="deleteSight(sight.id)">Delete</button>
+                    {{ post.title }}<br/>
+                    {{ post.body }}<br/>
+                    <button type="submit" name="button" @click="deletePost(post.id)">Delete</button>
                 </div>
             </li>
           </div>
@@ -20,31 +20,31 @@ import axios from 'axios'
 import Api from '../../../backend/AdminApi.js'
 
 export default {
-	name: 'sights',
+	name: 'posts',
 	data () {
 		return {
-			sights: []
+			posts: []
 		}
 	},
 	created () {
-		this.getSights()
+		this.getPosts()
 	},
 	methods: {
-		getSights () {
+		getPosts () {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-			axios.get(Api.sightsPath())
+			axios.get(Api.postsPath())
 				.then(response => {
-					this.sights = response.data
+					this.posts = response.data
 				})			
 		},
-		deleteSight (id) {
+		deletePost (id) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('jwt')
-			axios.delete(Api.sightPath(id))
+			axios.delete(Api.postPath(id))
 				.then(() => {
-					this.getSights()
+					this.getPosts()
 				})
 		} 
-  }
+	}
 }
 </script>
 

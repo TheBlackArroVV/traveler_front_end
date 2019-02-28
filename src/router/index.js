@@ -23,6 +23,8 @@ import Recommendations from '@/components/Sights/Recommendations'
 import Cities from '@/components/Admin/Cities/Index'
 import AdminTrips from '@/components/Admin/Trips/Trips'
 import AdminTopics from '@/components/Admin/Topics/Topics'
+import AdminSights from '@/components/Admin/Sights/Sights'
+import AdminPosts from '@/components/Admin/Posts/Posts'
 
 Vue.use(Router)
 
@@ -153,6 +155,16 @@ export default new Router({
       path: '/admin/topics',
       name: 'topics',
       component: AdminTopics
+    },
+    {
+      path: '/admin/sights',
+      name: 'sights',
+      component: AdminSights
+    },
+    {
+      path: '/admin/posts',
+      name: 'posts',
+      component: AdminPosts
     }
   ]
 })

@@ -25,6 +25,8 @@ import AdminTrips from '@/components/Admin/Trips/Trips'
 import AdminTopics from '@/components/Admin/Topics/Topics'
 import AdminSights from '@/components/Admin/Sights/Sights'
 import AdminPosts from '@/components/Admin/Posts/Posts'
+import AdminMessages from '@/components/Admin/Messages/Messages'
+import AdminComments from '@/components/Admin/Comments/Comments'
 
 Vue.use(Router)
 
@@ -165,6 +167,16 @@ export default new Router({
       path: '/admin/posts',
       name: 'posts',
       component: AdminPosts
+    },
+    {
+      path: '/admin/messages',
+      name: 'messages',
+      component: AdminMessages
+    },
+    {
+      path: '/admin/comments',
+      name: 'comments',
+      component: AdminComments
     }
   ]
 })

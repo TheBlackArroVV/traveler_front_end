@@ -28,6 +28,8 @@ import AdminPosts from '@/components/Admin/Posts/Posts'
 import AdminMessages from '@/components/Admin/Messages/Messages'
 import AdminComments from '@/components/Admin/Comments/Comments'
 import AdminUsers from '@/components/Admin/Users/Users'
+import AdminCountries from '@/components/Admin/Countries/Countries'
+import NewAdminCountry from '@/components/Admin/Countries/NewCountry'
 
 Vue.use(Router)
 
@@ -183,6 +185,16 @@ export default new Router({
       path: '/admin/users',
       name: 'users',
       component: AdminUsers
+    },
+    {
+      path: '/admin/countries',
+      name: 'countries',
+      component: AdminCountries
+    },
+    {
+      path: '/admin/countries/new',
+      name: 'new_country',
+      component: NewAdminCountry
     }
   ]
 })

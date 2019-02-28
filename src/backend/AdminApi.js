@@ -9,7 +9,7 @@ export default {
     return `http://localhost:3000/api/admin/countries`
   },
   countryPath (id) {
-    return `http://localhost:3000/api/admin/country/` + id
+    return `http://localhost:3000/api/admin/countries/` + id
   },
   usersPath () {
     return `http://localhost:3000/api/admin/users`

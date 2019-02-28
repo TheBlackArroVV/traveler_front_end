@@ -30,6 +30,7 @@ import AdminComments from '@/components/Admin/Comments/Comments'
 import AdminUsers from '@/components/Admin/Users/Users'
 import AdminCountries from '@/components/Admin/Countries/Countries'
 import NewAdminCountry from '@/components/Admin/Countries/NewCountry'
+import EditAdminCountry from '@/components/Admin/Countries/UpdateCountry'
 
 Vue.use(Router)
 
@@ -195,6 +196,11 @@ export default new Router({
       path: '/admin/countries/new',
       name: 'new_country',
       component: NewAdminCountry
+    },
+    {
+      path: '/admin/countries/:id',
+      name: 'edit_country',
+      component: EditAdminCountry
     }
   ]
 })

@@ -20,6 +20,18 @@ import Trip from '@/components/Trips/Show'
 import NewTrip from '@/components/Trips/New'
 import EditTrip from '@/components/Trips/Edit'
 import Recommendations from '@/components/Sights/Recommendations'
+import Cities from '@/components/Admin/Cities/Index'
+import AdminTrips from '@/components/Admin/Trips/Trips'
+import AdminTopics from '@/components/Admin/Topics/Topics'
+import AdminSights from '@/components/Admin/Sights/Sights'
+import AdminPosts from '@/components/Admin/Posts/Posts'
+import AdminMessages from '@/components/Admin/Messages/Messages'
+import AdminComments from '@/components/Admin/Comments/Comments'
+import AdminUsers from '@/components/Admin/Users/Users'
+import AdminCountries from '@/components/Admin/Countries/Countries'
+import NewAdminCountry from '@/components/Admin/Countries/NewCountry'
+import EditAdminCountry from '@/components/Admin/Countries/UpdateCountry'
+import NewAdminCity from '@/components/Admin/Cities/New'
 
 Vue.use(Router)
 
@@ -135,6 +147,66 @@ export default new Router({
           component: EditTrip
         }
       ]
+    },
+    {
+      path: '/admin/cities',
+      name: 'cities',
+      component: Cities
+    },
+    {
+      path: '/admin/cities/new',
+      name: 'cities',
+      component: NewAdminCity
+    },
+    {
+      path: '/admin/trips',
+      name: 'trips',
+      component: AdminTrips
+    },
+    {
+      path: '/admin/topics',
+      name: 'topics',
+      component: AdminTopics
+    },
+    {
+      path: '/admin/sights',
+      name: 'sights',
+      component: AdminSights
+    },
+    {
+      path: '/admin/posts',
+      name: 'posts',
+      component: AdminPosts
+    },
+    {
+      path: '/admin/messages',
+      name: 'messages',
+      component: AdminMessages
+    },
+    {
+      path: '/admin/comments',
+      name: 'comments',
+      component: AdminComments
+    },
+    {
+      path: '/admin/users',
+      name: 'users',
+      component: AdminUsers
+    },
+    {
+      path: '/admin/countries',
+      name: 'countries',
+      component: AdminCountries
+    },
+    {
+      path: '/admin/countries/new',
+      name: 'new_country',
+      component: NewAdminCountry
+    },
+    {
+      path: '/admin/countries/:id',
+      name: 'edit_country',
+      component: EditAdminCountry
     }
   ]
 })
